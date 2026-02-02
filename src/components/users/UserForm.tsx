@@ -1,9 +1,9 @@
-import { ApiUser } from "@/features/users/user.types"
+import { ForExamUser } from "@/features/users/user.types"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 
 interface Props{
-    onAddUser:(user:ApiUser)=>void
+    onAddUser:(user:ForExamUser)=>void
 }
 
 function UserForm({onAddUser}:Props) {
@@ -23,7 +23,7 @@ function UserForm({onAddUser}:Props) {
                 name,
                 username,
                 email,
-                adress: {
+                address: {
                     street,
                     suite:"",
                     zipcode:"",
@@ -68,15 +68,15 @@ function UserForm({onAddUser}:Props) {
             />
             <input
                 className="border p-2 w-full mb-2"
-                placeholder="Nombre"
-                type="text"
+                placeholder="Email"
+                type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
             />
             <input
                 className="border p-2 w-full mb-2"
-                placeholder="Nombre"
+                placeholder="Calle"
                 type="text"
                 value={street}
                 onChange={e => setStreet(e.target.value)}

@@ -1,20 +1,20 @@
 import { getUsers } from "@/features/users/user.api"
 import { UsersContext } from "@/features/users/user.context"
-import { ApiUser } from "@/features/users/user.types"
+import { ApiUser, ForExamUser } from "@/features/users/user.types"
 import { useContext, useEffect, useState } from "react"
 
 export function UsersProvider({children}: {children: React.ReactNode}) {
     const [users, setUsers] = useState<ApiUser[]>([])
+    const [user, setUser] = useState<ForExamUser>()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    const addUser=async(user:ApiUser)=>{
+    const addUser=(user:ForExamUser)=>{
         try{
             setLoading(true)
             setError(null)
             setUsers(prev=>[...prev,user])
-            const data = await getUsers()
-            setUsers(data)
+            setUser(user)
         } catch (err) {
             setError("Error cargando usuarios")
         } finally {
